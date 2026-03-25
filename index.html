@@ -1,347 +1,859 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Professional Portfolio | Dark Grey Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
     <style>
-        :root {
-            --main-bg: #121212;      
-            --section-bg: #1a1a1a;   
-            --card-bg: #242424;      
-            --text-primary: #ffffff; 
-            --text-secondary: #b0b0b0;
-            --accent: #6f5cc3;       
-            --hover-grey: rgba(40, 40, 40, 0.95); 
-            --border: #333333;
+      :root {
+        --main-bg: #121212;
+        --section-bg: #1a1a1a;
+        --card-bg: #242424;
+        --text-primary: #ffffff;
+        --text-secondary: #b0b0b0;
+        --accent: #6f5cc3;
+        --hover-grey: rgba(40, 40, 40, 0.95);
+        --border: #333333;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+        scroll-behavior: smooth;
+      }
+      body {
+        background-color: var(--main-bg);
+        color: var(--text-primary);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      /* --- Header --- */
+      header {
+        position: fixed;
+        width: 100%;
+        padding: 15px 8%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+        background: rgba(18, 18, 18, 0.95);
+        border-bottom: 1px solid var(--border);
+        backdrop-filter: blur(10px);
+      }
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 800;
+        min-width: 50px;
+      }
+      nav a {
+        text-decoration: none;
+        color: var(--text-secondary);
+        margin-left: 20px;
+        font-weight: 600;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        transition: 0.3s;
+      }
+      nav a:hover {
+        color: var(--text-primary);
+      }
+
+      /* --- Sections --- */
+      section {
+        padding: 100px 10%;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .section-title {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+      .section-title p {
+        font-size: 0.85rem;
+        color: var(--accent);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+      .section-title h2 {
+        font-size: 2.5rem;
+        font-weight: 800;
+      }
+
+      .btn-unified {
+        display: inline-block;
+        margin-top: 25px;
+        padding: 12px 35px;
+        background: var(--accent);
+        color: #fff;
+        text-decoration: none;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        transition: 0.3s;
+        border: none;
+        width: fit-content;
+        align-self: center;
+      }
+      .btn-unified:hover {
+        transform: translateY(-3px);
+        background: #5a48a3;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      /* --- Hero --- */
+      .hero {
+        text-align: center;
+        position: relative;
+        background: var(--main-bg);
+        overflow: hidden;
+      }
+      .hero::before,
+      .hero::after {
+        content: "";
+        position: absolute;
+        top: -50px;
+        width: 300px;
+        height: 500px;
+        background: radial-gradient(
+          circle,
+          rgba(111, 92, 195, 0.1) 0%,
+          transparent 70%
+        );
+        clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        z-index: 1;
+      }
+      .hero::before {
+        left: 10%;
+        transform: rotate(-15deg);
+      }
+      .hero::after {
+        right: 10%;
+        transform: rotate(15deg);
+      }
+      .hero h3 {
+        font-size: 5rem;
+        font-weight: 800;
+        color: rgba(189, 185, 185, 0.267);
+        margin-bottom: -10px;
+        position: relative;
+        z-index: 0;
+      }
+
+      /* RESPONSIVE NAME */
+      .hero h1 {
+        font-size: clamp(1.8rem, 6vw, 3.2rem);
+        font-weight: 800;
+        margin: 10px 0;
+        position: relative;
+        z-index: 2;
+        line-height: 1.2;
+      }
+      .hero p {
+        letter-spacing: 4px;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      /* --- Layouts --- */
+      .column-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        align-items: center;
+        width: 100%;
+      }
+      .big-rect {
+        width: 100%;
+        max-width: 900px;
+        background: var(--card-bg);
+        padding: 40px;
+        border-radius: 15px;
+        border: 1px solid var(--border);
+        transition: 0.3s;
+      }
+      .big-rect:hover {
+        border-color: var(--accent);
+        transform: translateY(-3px);
+      }
+
+      .skills-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+      }
+      .skill-card {
+        background: var(--card-bg);
+        padding: 30px;
+        border-radius: 12px;
+        text-align: center;
+        border: 1px solid var(--border);
+        transition: 0.3s;
+      }
+      .skill-card:hover {
+        border-color: var(--accent);
+        transform: translateY(-3px);
+      }
+
+      .four-column-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+      }
+      .two-column-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+      }
+      .grid-link {
+        text-decoration: none;
+        display: block;
+        color: inherit;
+      }
+
+      /* Project Specifics */
+      #portfolio .grid-link {
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        overflow: hidden;
+        background: #0d0d0d;
+        transition: 0.3s;
+      }
+      #portfolio .grid-link:hover {
+        border-color: var(--accent);
+        transform: translateY(-5px);
+      }
+      #portfolio .hover-box {
+        position: relative;
+        height: 220px;
+        background: var(--card-bg);
+        width: 100%;
+        overflow: hidden;
+      }
+      #portfolio .static-title {
+        padding: 10px 15px;
+        text-align: center;
+        background: #0d0d0d;
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        width: 100%;
+      }
+
+      /* Cert Specifics */
+      #certs .hover-box {
+        position: relative;
+        height: 350px;
+        background: var(--card-bg);
+        border-radius: 15px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+      }
+
+      .hover-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.5s;
+        opacity: 0.8;
+      }
+      .overlay {
+        position: absolute;
+        bottom: -100%;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--hover-grey);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 25px;
+        text-align: center;
+        transition: 0.5s;
+        z-index: 5;
+      }
+      .hover-box:hover .overlay {
+        bottom: 0;
+      }
+      .hover-box:hover img {
+        transform: scale(1.1);
+        opacity: 0.5;
+      }
+
+      footer {
+        padding: 50px 0;
+        background: #0d0d0d;
+        text-align: center;
+        border-top: 1px solid var(--border);
+      }
+      .socials a {
+        text-decoration: none !important;
+        display: inline-block;
+        outline: none;
+        margin: 0 20px;
+        color: var(--text-secondary);
+        transition: 0.3s;
+      }
+      .socials a:hover {
+        color: var(--accent);
+        transform: translateY(-5px);
+      }
+      .socials a i {
+        text-decoration: none;
+        font-size: 1.5rem;
+      }
+
+      /* --- NEW RESPONSIVENESS MEDIA QUERIES --- */
+      @media (max-width: 992px) {
+        .skills-row,
+        .four-column-grid {
+          grid-template-columns: repeat(2, 1fr);
         }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
-        body { background-color: var(--main-bg); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; }
-
-        /* --- Header --- */
         header {
-            position: fixed; width: 100%; padding: 15px 8%;
-            display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000; background: rgba(18, 18, 18, 0.95);
-            border-bottom: 1px solid var(--border);
-            backdrop-filter: blur(10px);
+          padding: 15px 4%;
         }
-        .logo { font-size: 1.5rem; font-weight: 800; min-width: 50px; }
-        nav a { text-decoration: none; color: var(--text-secondary); margin-left: 20px; font-weight: 600; font-size: 0.8rem; text-transform: uppercase; transition: 0.3s; }
-        nav a:hover { color: var(--text-primary); }
-
-        /* --- Sections --- */
-        section { padding: 100px 10%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
-        .section-title { text-align: center; margin-bottom: 60px; }
-        .section-title p { font-size: 0.85rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
-        .section-title h2 { font-size: 2.5rem; font-weight: 800; }
-
-        .btn-unified { 
-            display: inline-block;
-            margin-top: 25px; 
-            padding: 12px 35px; 
-            background: var(--accent); 
-            color: #fff; 
-            text-decoration: none; 
-            border-radius: 50px; 
-            font-size: 0.9rem; 
-            font-weight: 600; 
-            transition: 0.3s; 
-            border: none;
-            width: fit-content;
-            align-self: center;
+        /* Hide non-critical header items to save space */
+        nav a:nth-child(4),
+        nav a:nth-child(5) {
+          display: none;
         }
-        .btn-unified:hover { transform: translateY(-3px); background: #5a48a3; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+      }
 
-        /* --- Hero --- */
-        .hero { text-align: center; position: relative; background: var(--main-bg); overflow: hidden; }
-        .hero::before, .hero::after {
-            content: '';
-            position: absolute;
-            top: -50px;
-            width: 300px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(111, 92, 195, 0.1) 0%, transparent 70%);
-            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-            z-index: 1;
+      @media (max-width: 768px) {
+        section {
+          padding: 80px 5%;
         }
-        .hero::before { left: 10%; transform: rotate(-15deg); }
-        .hero::after { right: 10%; transform: rotate(15deg); }
-        .hero h3 { font-size: 5rem; font-weight: 800; color: rgba(189, 185, 185, 0.267); margin-bottom: -10px; position: relative; z-index: 0; }
-        
-        /* RESPONSIVE NAME */
-        .hero h1 { font-size: clamp(1.8rem, 6vw, 3.2rem); font-weight: 800; margin: 10px 0; position: relative; z-index: 2; line-height: 1.2; }
-        .hero p { letter-spacing: 4px; color: var(--text-secondary); text-transform: uppercase; font-size: 0.9rem; position: relative; z-index: 2; }
-
-        /* --- Layouts --- */
-        .column-wrapper { display: flex; flex-direction: column; gap: 25px; align-items: center; width: 100%; }
-        .big-rect { width: 100%; max-width: 900px; background: var(--card-bg); padding: 40px; border-radius: 15px; border: 1px solid var(--border); transition: 0.3s; }
-        .big-rect:hover { border-color: var(--accent); transform: translateY(-3px); }
-
-        .skills-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-        .skill-card { background: var(--card-bg); padding: 30px; border-radius: 12px; text-align: center; border: 1px solid var(--border); transition: 0.3s; }
-        .skill-card:hover { border-color: var(--accent); transform: translateY(-3px); }
-
-        .four-column-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
-        .two-column-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
-        .grid-link { text-decoration: none; display: block; color: inherit; }
-
-        /* Project Specifics */
-        #portfolio .grid-link { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: #0d0d0d; transition: 0.3s; }
-        #portfolio .grid-link:hover { border-color: var(--accent); transform: translateY(-5px); }
-        #portfolio .hover-box { position: relative; height: 220px; background: var(--card-bg); width: 100%; overflow: hidden; }
-        #portfolio .static-title { padding: 10px 15px; text-align: center; background: #0d0d0d; font-size: 0.9rem; font-weight: 700; color: var(--text-primary); width: 100%; }
-
-        /* Cert Specifics */
-        #certs .hover-box { position: relative; height: 350px; background: var(--card-bg); border-radius: 15px; overflow: hidden; border: 1px solid var(--border); }
-
-        .hover-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; opacity: 0.8; }
-        .overlay { position: absolute; bottom: -100%; left: 0; width: 100%; height: 100%; background: var(--hover-grey); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 25px; text-align: center; transition: 0.5s; z-index: 5; }
-        .hover-box:hover .overlay { bottom: 0; }
-        .hover-box:hover img { transform: scale(1.1); opacity: 0.5; }
-
-        footer { padding: 50px 0; background: #0d0d0d; text-align: center; border-top: 1px solid var(--border); }
-        .socials a { text-decoration: none !important; display: inline-block; outline: none; margin: 0 20px; color: var(--text-secondary); transition: 0.3s; }
-        .socials a:hover { color: var(--accent); transform: translateY(-5px); }
-        .socials a i { text-decoration: none; font-size: 1.5rem; }
-
-        /* --- NEW RESPONSIVENESS MEDIA QUERIES --- */
-        @media (max-width: 992px) {
-            .skills-row, .four-column-grid { grid-template-columns: repeat(2, 1fr); }
-            header { padding: 15px 4%; }
-            /* Hide non-critical header items to save space */
-            nav a:nth-child(4), nav a:nth-child(5) { display: none; } 
+        .hero h3 {
+          font-size: 3.5rem;
         }
-
-        @media (max-width: 768px) {
-            section { padding: 80px 5%; }
-            .hero h3 { font-size: 3.5rem; }
-            .hero p { font-size: 0.8rem; letter-spacing: 2px; }
-            .skills-row, .two-column-grid, .four-column-grid { grid-template-columns: 1fr; }
-            .big-rect { padding: 25px; }
-            #certs .hover-box { height: 280px; }
-            nav a { margin-left: 10px; font-size: 0.7rem; }
+        .hero p {
+          font-size: 0.8rem;
+          letter-spacing: 2px;
         }
-
-        @media (max-width: 480px) {
-            .section-title h2 { font-size: 1.8rem; }
-            nav a:nth-child(2), nav a:nth-child(6) { display: none; } /* Show only Home and Projects on tiny screens */
+        .skills-row,
+        .two-column-grid,
+        .four-column-grid {
+          grid-template-columns: 1fr;
         }
+        .big-rect {
+          padding: 25px;
+        }
+        #certs .hover-box {
+          height: 280px;
+        }
+        nav a {
+          margin-left: 10px;
+          font-size: 0.7rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .section-title h2 {
+          font-size: 1.8rem;
+        }
+        nav a:nth-child(2),
+        nav a:nth-child(6) {
+          display: none;
+        } /* Show only Home and Projects on tiny screens */
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <header>
-        <div class="logo"></div>
-        <nav>
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#education">Education</a>
-            <a href="#skills">Skills</a>
-            <a href="#experience">Experience</a>
-            <a href="#portfolio">Projects</a>
-            <a href="#certs">Certificates</a>
-        </nav>
+      <div class="logo"></div>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#portfolio">Projects</a>
+        <a href="#certs">Certificates</a>
+      </nav>
     </header>
 
     <section class="hero" id="home">
-        <h3>HI!</h3>
-        <h1>Muhammad Abdullah Baig</h1>
-        <p>Data Scientist & AI Engineer | Aspiring MS in Data Science/AI
-            <br> Open to Working Student Opportunities </p>
-        <a href="#portfolio" class="btn-unified">Visit My Works</a>
+      <h3>HI!</h3>
+      <h1>Muhammad Abdullah Baig</h1>
+      <p>
+        Data Scientist & AI Engineer | Aspiring MS in Data Science/AI <br />
+        Open to Working Student Opportunities
+      </p>
+      <a href="#portfolio" class="btn-unified">Visit My Works</a>
     </section>
 
-    <section id="about" style="text-align: center;">
-        <div class="section-title"><p>Who Am I?</p><h2>About Me</h2></div>
-        <div style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; align-items: center;">
-            <p style="color: var(--text-secondary);">Data Scientist with 1.5+ years of experience building AI agents, chatbots, and predictive models using Python, LangChain, and ML frameworks. Skilled in end-to-end AI solutions, including automated pipelines and forecasting. Experienced in deploying scalable AI systems and working with real-world datasets across finance and e-commerce domains. BSCS graduate seeking a Master’s in Data Science/AI to advance expertise and contribute to applied research.
-            <br><br>Languages: ENGLISH — B2 (INDEPENDENT USER) | GERMAN — A2 (BASIC USER)</p>
-            <a href="../Assets/Resume.pdf" download="Muhammad_Abdullah_Baig_CV" class="btn-unified">Download CV</a>
-        </div>
+    <section id="about" style="text-align: center">
+      <div class="section-title">
+        <p>Who Am I?</p>
+        <h2>About Me</h2>
+      </div>
+      <div
+        style="
+          max-width: 800px;
+          margin: 0 auto;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        "
+      >
+        <p style="color: var(--text-secondary)">
+          Data Scientist with 1.5+ years of experience building AI agents,
+          chatbots, and predictive models using Python, LangChain, and ML
+          frameworks. Skilled in end-to-end AI solutions, including automated
+          pipelines and forecasting. Experienced in deploying scalable AI
+          systems and working with real-world datasets across finance and
+          e-commerce domains. BSCS graduate seeking a Master’s in Data
+          Science/AI to advance expertise and contribute to applied research.
+          <br /><br />Languages: ENGLISH — B2 (INDEPENDENT USER) | GERMAN — A2
+          (BASIC USER)
+        </p>
+        <a
+          href="Assets/Resume.pdf"
+          download="Muhammad_Abdullah_Baig_CV"
+          class="btn-unified"
+          >Download CV</a
+        >
+      </div>
     </section>
 
-    <section id="education" style="background: var(--section-bg);">
-        <div class="section-title"><p>Background</p><h2>Education</h2></div>
-        <div class="column-wrapper">
-            <div class="big-rect"><h3 style="color:var(--accent)">BACHELOR OF SCIENCE IN COMPUTER SCIENCE (BSCS)</h3>
-                <p>University of Karachi | 2024</p>
-                <p>Final grade - CGPA 3.11 / 4.0</p>
-            </div>
-            <div class="big-rect"><h3 style="color:var(--accent)">Intermediate In Pre-Engineering</h3>
-                <p>Adamjee Govt. Science College | 2020</p>
-                <p>Final grade - 87.09%</p>
-            </div>
+    <section id="education" style="background: var(--section-bg)">
+      <div class="section-title">
+        <p>Background</p>
+        <h2>Education</h2>
+      </div>
+      <div class="column-wrapper">
+        <div class="big-rect">
+          <h3 style="color: var(--accent)">
+            BACHELOR OF SCIENCE IN COMPUTER SCIENCE (BSCS)
+          </h3>
+          <p>University of Karachi | 2024</p>
+          <p>Final grade - CGPA 3.11 / 4.0</p>
         </div>
+        <div class="big-rect">
+          <h3 style="color: var(--accent)">Intermediate In Pre-Engineering</h3>
+          <p>Adamjee Govt. Science College | 2020</p>
+          <p>Final grade - 87.09%</p>
+        </div>
+      </div>
     </section>
 
     <section id="skills">
-        <div class="section-title"><p>What I Do?</p><h2>Skills</h2></div>
-        <div class="skills-row">
-            <div class="big-rect"><h3 style="color:var(--accent)">Programming & Development</h3>
-                <p> Python, R, SQL (MySQL, PostgreSQL, Oracle) FastAPI, Git, Docker, Automation & Web Scraping</p>
-            </div>
-            <div class="big-rect"><h3 style="color:var(--accent)">Artificial Intelligence</h3>
-                <p> Machine Learning (ARIMA, LSTM), Deep Learning (CNN, RNN, Transformers), NLP, PyTorch, TensorFlow </p>
-            </div>
-            <div class="big-rect"><h3 style="color:var(--accent)">Analytics & Visualization</h3>
-                <p> Power BI, Tableau, Microsoft Excel, EDA, Data Analysis, Predictive & Statistical analysis </p>
-            </div>
-            <div class="big-rect"><h3 style="color:var(--accent)">Core Competencies</h3>
-                <p> Problem solving, Critical thinking, Analytical Thinking, Communication Skills, Team work</p>
-            </div>
+      <div class="section-title">
+        <p>What I Do?</p>
+        <h2>Skills</h2>
+      </div>
+      <div class="skills-row">
+        <div class="big-rect">
+          <h3 style="color: var(--accent)">Programming & Development</h3>
+          <p>
+            Python, R, SQL (MySQL, PostgreSQL, Oracle) FastAPI, Git, Docker,
+            Automation & Web Scraping
+          </p>
         </div>
+        <div class="big-rect">
+          <h3 style="color: var(--accent)">Artificial Intelligence</h3>
+          <p>
+            Machine Learning (ARIMA, LSTM), Deep Learning (CNN, RNN,
+            Transformers), NLP, PyTorch, TensorFlow
+          </p>
+        </div>
+        <div class="big-rect">
+          <h3 style="color: var(--accent)">Analytics & Visualization</h3>
+          <p>
+            Power BI, Tableau, Microsoft Excel, EDA, Data Analysis, Predictive &
+            Statistical analysis
+          </p>
+        </div>
+        <div class="big-rect">
+          <h3 style="color: var(--accent)">Core Competencies</h3>
+          <p>
+            Problem solving, Critical thinking, Analytical Thinking,
+            Communication Skills, Team work
+          </p>
+        </div>
+      </div>
     </section>
 
-    <section id="experience" style="background: var(--section-bg);">
-        <div class="section-title"><h2>Experience</h2></div>
-        <div class="column-wrapper">
-            <div class="big-rect"><h3 style="color:var(--accent)">FREELANCE AI ENGINEER & DATA SCIENTIST – FREELANCER.COM & UPWORK (REMOTE) 06/2025 – Current ( KARACHI, PAKISTAN )</h3>
-                <p><li>Implemented an LLM-powered inventory chatbot for real-time insights and stock forecasting</li></p>
-                <p><li>Designed ARIMA/LSTM forecasting pipelines, achieving ~75% accuracy for structured datasets.</li></p>
-                <p><li>Automated extraction pipeline for 100+ medical program websites, reducing manual effort.</li></p>
-                <p><li>Created an AI adaptive learning system that personalizes content and difficulty based on performance.</li></p>
-            </div>
-            <div class="big-rect"><h3 style="color:var(--accent)">DATA SCIENTIST – SIDDIQSONS ECOMM (PVT) LTD (FULL-TIME) <br> 01/2025 - 06/2025 ( KARACHI, PAKISTAN )</h3>
-                <p><li>Engineered LLM-powered inventory AI, improving query processing speed by ~25%.</li></p>
-                <p><li>Optimized forecasting and inventory processes, supporting effective resource allocation.</li></p>
-                <p><li>Designed real-time dashboards and P&L/balance sheet visualizations, enhancing financial insights</li></p>
-                <p><li>Implemented a Sales AI application, improving sales prediction accuracy and operational efficiency</li></p>
-            </div>
-            <div class="big-rect"><h3 style="color:var(--accent)">DATA ENGINEER INTERN – FINANCE DIRECTORATE, UNIVERSITY OF KARACHI <br> 
-            06/2024 – 01/2025 ( KARACHI, PAKISTAN )</h3>
-                <p><li>Leveraged Oracle SQL for ETL processes, supporting data-driven decision-making.</li></p>
-                <p><li>Created Power BI dashboards, boosting data access and interpretation efficiency by ~20%.</li></p>
-                <p><li>Analyzed university data across departments, covering ~80% of records and streamlining operations.</li></p>
-            </div>
+    <section id="experience" style="background: var(--section-bg)">
+      <div class="section-title"><h2>Experience</h2></div>
+      <div class="column-wrapper">
+        <div class="big-rect">
+          <h3 style="color: var(--accent)">
+            FREELANCE AI ENGINEER & DATA SCIENTIST – FREELANCER.COM & UPWORK
+            (REMOTE) 06/2025 – Current ( KARACHI, PAKISTAN )
+          </h3>
+          <p>
+            <li>
+              Implemented an LLM-powered inventory chatbot for real-time
+              insights and stock forecasting
+            </li>
+          </p>
+          <p>
+            <li>
+              Designed ARIMA/LSTM forecasting pipelines, achieving ~75% accuracy
+              for structured datasets.
+            </li>
+          </p>
+          <p>
+            <li>
+              Automated extraction pipeline for 100+ medical program websites,
+              reducing manual effort.
+            </li>
+          </p>
+          <p>
+            <li>
+              Created an AI adaptive learning system that personalizes content
+              and difficulty based on performance.
+            </li>
+          </p>
         </div>
+        <div class="big-rect">
+          <h3 style="color: var(--accent)">
+            DATA SCIENTIST – SIDDIQSONS ECOMM (PVT) LTD (FULL-TIME) <br />
+            01/2025 - 06/2025 ( KARACHI, PAKISTAN )
+          </h3>
+          <p>
+            <li>
+              Engineered LLM-powered inventory AI, improving query processing
+              speed by ~25%.
+            </li>
+          </p>
+          <p>
+            <li>
+              Optimized forecasting and inventory processes, supporting
+              effective resource allocation.
+            </li>
+          </p>
+          <p>
+            <li>
+              Designed real-time dashboards and P&L/balance sheet
+              visualizations, enhancing financial insights
+            </li>
+          </p>
+          <p>
+            <li>
+              Implemented a Sales AI application, improving sales prediction
+              accuracy and operational efficiency
+            </li>
+          </p>
+        </div>
+        <div class="big-rect">
+          <h3 style="color: var(--accent)">
+            DATA ENGINEER INTERN – FINANCE DIRECTORATE, UNIVERSITY OF KARACHI
+            <br />
+            06/2024 – 01/2025 ( KARACHI, PAKISTAN )
+          </h3>
+          <p>
+            <li>
+              Leveraged Oracle SQL for ETL processes, supporting data-driven
+              decision-making.
+            </li>
+          </p>
+          <p>
+            <li>
+              Created Power BI dashboards, boosting data access and
+              interpretation efficiency by ~20%.
+            </li>
+          </p>
+          <p>
+            <li>
+              Analyzed university data across departments, covering ~80% of
+              records and streamlining operations.
+            </li>
+          </p>
+        </div>
+      </div>
     </section>
 
     <section id="portfolio">
-        <div class="section-title"><p>Works</p><h2>Projects</h2></div>
-        <div class="four-column-grid">
-            <a href="https://github.com/M-Abdullah-Baig/CFO-Agent" class="grid-link" target="_blank">
-                <div class="hover-box">
-                    <img src="../Assets/Proj1.jpeg">
-                    <div class="overlay">
-                        <p style="color:white; font-size:0.8rem">AI CFO Agent: A Streamlit-based AI assistant that analyzes financial documents from Google Drive using GPT-4o, supporting voice input, text-to-speech, visualizations, and conversation memory for CFO insights.</p>
-                    </div>
-                </div>
-                <div class="static-title"><h3 style="color:var(--accent)">AI CFO Agent</h3></div>
-            </a>
-            
-            <a href="https://github.com/M-Abdullah-Baig/AI-Recruitment-Product" class="grid-link" target="_blank">
-                <div class="hover-box"><img src="../Assets/Proj2.jpeg">
-                    <div class="overlay">
-                    <p style="color:white; font-size:0.8rem">AI Recruitment Agent: An AI-powered platform that automates resume parsing, extracts key candidate data, and evaluates applicants against job descriptions using LLMs. Improves HR efficiency and enables data-driven hiring decisions.</p>
-                </div>
+      <div class="section-title">
+        <p>Works</p>
+        <h2>Projects</h2>
+      </div>
+      <div class="four-column-grid">
+        <a
+          href="https://github.com/M-Abdullah-Baig/CFO-Agent"
+          class="grid-link"
+          target="_blank"
+        >
+          <div class="hover-box">
+            <img src="Assets/Proj1.jpeg" />
+            <div class="overlay">
+              <p style="color: white; font-size: 0.8rem">
+                AI CFO Agent: A Streamlit-based AI assistant that analyzes
+                financial documents from Google Drive using GPT-4o, supporting
+                voice input, text-to-speech, visualizations, and conversation
+                memory for CFO insights.
+              </p>
             </div>
-                <div class="static-title"><h3 style="color:var(--accent)">AI Recruitment Agent</h3></div>
-            </a>
-            <a href="https://github.com/M-Abdullah-Baig/MediCareAI" class="grid-link" target="_blank">
-                <div class="hover-box"><img src="../Assets/Proj3.jpeg">
-                    <div class="overlay">
-                    <p style="color:white; font-size:0.8rem">MediCareAI: An AI-powered healthcare platform that predicts diseases, analyzes CBC reports, and provides real-time medical chat and voice assistance. Combines AI diagnostics with interactive dashboards for accessible health guidance.</p>
-                </div>
+          </div>
+          <div class="static-title">
+            <h3 style="color: var(--accent)">AI CFO Agent</h3>
+          </div>
+        </a>
+
+        <a
+          href="https://github.com/M-Abdullah-Baig/AI-Recruitment-Product"
+          class="grid-link"
+          target="_blank"
+        >
+          <div class="hover-box">
+            <img src="Assets/Proj2.jpeg" />
+            <div class="overlay">
+              <p style="color: white; font-size: 0.8rem">
+                AI Recruitment Agent: An AI-powered platform that automates
+                resume parsing, extracts key candidate data, and evaluates
+                applicants against job descriptions using LLMs. Improves HR
+                efficiency and enables data-driven hiring decisions.
+              </p>
             </div>
-                <div class="static-title"><h3 style="color:var(--accent)">MediCareAI</h3></div>
-            </a>
-            <a href="https://github.com/M-Abdullah-Baig/Binary-Classification-of-Mushrooms-Web-App" class="grid-link" target="_blank">
-                <div class="hover-box"><img src="../Assets/Proj4.jpeg">
-                    <div class="overlay">
-                    <p style="color:white; font-size:0.8rem">Mushroom Classification Web App: Streamlit app for binary mushroom classification using SVM, Logistic Regression, and Random Forest, with interactive hyperparameter tuning, dynamic plots, and real-time performance metrics.</p>
-                </div>
+          </div>
+          <div class="static-title">
+            <h3 style="color: var(--accent)">AI Recruitment Agent</h3>
+          </div>
+        </a>
+        <a
+          href="https://github.com/M-Abdullah-Baig/MediCareAI"
+          class="grid-link"
+          target="_blank"
+        >
+          <div class="hover-box">
+            <img src="Assets/Proj3.jpeg" />
+            <div class="overlay">
+              <p style="color: white; font-size: 0.8rem">
+                MediCareAI: An AI-powered healthcare platform that predicts
+                diseases, analyzes CBC reports, and provides real-time medical
+                chat and voice assistance. Combines AI diagnostics with
+                interactive dashboards for accessible health guidance.
+              </p>
             </div>
-                <div class="static-title"><h3 style="color:var(--accent)">Binary Classification</h3></div>
-            </a>
-            <a href="https://github.com/M-Abdullah-Baig/Cat-Image-Recognition-Classifier" class="grid-link" target="_blank">
-                <div class="hover-box"><img src="../Assets/Proj5.jpeg">
-                    <div class="overlay">
-                    <p style="color:white; font-size:0.8rem">Cat Image Recognition: Built a single-layer neural network-based classifier using logistic regression, implementing preprocessing, gradient descent, and forward/backward propagation for high-accuracy cat detection.</p>
-                </div>
+          </div>
+          <div class="static-title">
+            <h3 style="color: var(--accent)">MediCareAI</h3>
+          </div>
+        </a>
+        <a
+          href="https://github.com/M-Abdullah-Baig/Binary-Classification-of-Mushrooms-Web-App"
+          class="grid-link"
+          target="_blank"
+        >
+          <div class="hover-box">
+            <img src="Assets/Proj4.jpeg" />
+            <div class="overlay">
+              <p style="color: white; font-size: 0.8rem">
+                Mushroom Classification Web App: Streamlit app for binary
+                mushroom classification using SVM, Logistic Regression, and
+                Random Forest, with interactive hyperparameter tuning, dynamic
+                plots, and real-time performance metrics.
+              </p>
             </div>
-                <div class="static-title"><h3 style="color:var(--accent)">Cat Recognition</h3></div>
-            </a>
-            <a href="https://github.com/M-Abdullah-Baig/Sentiment-Analysis" class="grid-link" target="_blank">
-                <div class="hover-box"><img src="../Assets/Proj6.jpeg">
-                    <div class="overlay">
-                    <p style="color:white; font-size:0.8rem">US Airlines Tweets Sentiment Analysis: A Streamlit app analyzing Twitter data on US airlines, visualizing sentiment distributions, word clouds, and temporal/spatial trends for actionable insights.</p>
-                </div>
+          </div>
+          <div class="static-title">
+            <h3 style="color: var(--accent)">Binary Classification</h3>
+          </div>
+        </a>
+        <a
+          href="https://github.com/M-Abdullah-Baig/Cat-Image-Recognition-Classifier"
+          class="grid-link"
+          target="_blank"
+        >
+          <div class="hover-box">
+            <img src="Assets/Proj5.jpeg" />
+            <div class="overlay">
+              <p style="color: white; font-size: 0.8rem">
+                Cat Image Recognition: Built a single-layer neural network-based
+                classifier using logistic regression, implementing
+                preprocessing, gradient descent, and forward/backward
+                propagation for high-accuracy cat detection.
+              </p>
             </div>
-                <div class="static-title"><h3 style="color:var(--accent)">Sentiment Analysis</h3></div>
-            </a>
-            <a href="https://github.com/M-Abdullah-Baig/British-Airways-Reviews-Tableau-Dashboard" class="grid-link" target="_blank">
-                <div class="hover-box"><img src="../Assets/Proj7.jpeg">
-                    <div class="overlay">
-                    <p style="color:white; font-size:0.8rem">British Airways Reviews Dashboard: Tableau dashboard analyzing 2016–2023 customer reviews, visualizing satisfaction trends with interactive filters, time series, maps, and aircraft comparisons.</p>
-                </div>
+          </div>
+          <div class="static-title">
+            <h3 style="color: var(--accent)">Cat Recognition</h3>
+          </div>
+        </a>
+        <a
+          href="https://github.com/M-Abdullah-Baig/Sentiment-Analysis"
+          class="grid-link"
+          target="_blank"
+        >
+          <div class="hover-box">
+            <img src="Assets/Proj6.jpeg" />
+            <div class="overlay">
+              <p style="color: white; font-size: 0.8rem">
+                US Airlines Tweets Sentiment Analysis: A Streamlit app analyzing
+                Twitter data on US airlines, visualizing sentiment
+                distributions, word clouds, and temporal/spatial trends for
+                actionable insights.
+              </p>
             </div>
-                <div class="static-title"><h3 style="color:var(--accent)">Tableau Dashboard</h3></div>
-            </a>
-            <a href="https://github.com/M-Abdullah-Baig/Power_Bi_Financial_Dashboard" class="grid-link" target="_blank">
-                <div class="hover-box"><img src="../Assets/Proj8.jpeg">
-                    <div class="overlay">
-                    <p style="color:white; font-size:0.8rem">Financial Dashboard: Interactive platform analyzing a country's profit, sales, and discount trends with dynamic filters and visualizations for data-driven decision-making.</p>
-                </div>
+          </div>
+          <div class="static-title">
+            <h3 style="color: var(--accent)">Sentiment Analysis</h3>
+          </div>
+        </a>
+        <a
+          href="https://github.com/M-Abdullah-Baig/British-Airways-Reviews-Tableau-Dashboard"
+          class="grid-link"
+          target="_blank"
+        >
+          <div class="hover-box">
+            <img src="Assets/Proj7.jpeg" />
+            <div class="overlay">
+              <p style="color: white; font-size: 0.8rem">
+                British Airways Reviews Dashboard: Tableau dashboard analyzing
+                2016–2023 customer reviews, visualizing satisfaction trends with
+                interactive filters, time series, maps, and aircraft
+                comparisons.
+              </p>
             </div>
-                <div class="static-title"><h3 style="color:var(--accent)">Power BI Dashboard</h3></div>
-            </a>
-        </div>
+          </div>
+          <div class="static-title">
+            <h3 style="color: var(--accent)">Tableau Dashboard</h3>
+          </div>
+        </a>
+        <a
+          href="https://github.com/M-Abdullah-Baig/Power_Bi_Financial_Dashboard"
+          class="grid-link"
+          target="_blank"
+        >
+          <div class="hover-box">
+            <img src="Assets/Proj8.jpeg" />
+            <div class="overlay">
+              <p style="color: white; font-size: 0.8rem">
+                Financial Dashboard: Interactive platform analyzing a country's
+                profit, sales, and discount trends with dynamic filters and
+                visualizations for data-driven decision-making.
+              </p>
+            </div>
+          </div>
+          <div class="static-title">
+            <h3 style="color: var(--accent)">Power BI Dashboard</h3>
+          </div>
+        </a>
+      </div>
     </section>
 
-    <section id="certs" style="background: var(--section-bg);">
-        <div class="section-title"><h2>Certifications</h2></div>
-        <div class="two-column-grid">
-            <a href="https://www.coursera.org/account/accomplishments/specialization/3QY93SELWGJR" class="grid-link" target="_blank">
-                <div class="hover-box"><img src="../Assets/Cert1.jpeg">
-                    <div class="overlay">
-                        <h3 style="color:var(--accent)">Machine Learning Specialization</h3>
-                        <p>DeepLearning.AI, 02/2024</p>
-                        <p>Mastered ML (supervised/unsupervised/reinforcement) using TensorFlow and scikit-learn for predictive models. Applied linear algebra, calculus, and probability to understand optimization and neural networks.</p>
-                    </div>
-                </div>
-            </a>
-            <a href="https://www.coursera.org/account/accomplishments/specialization/JRYW52ESGCK3" class="grid-link" target="_blank">
-                <div class="hover-box"><img src="../Assets/Cert2.jpeg">
-                    <div class="overlay">
-                        <h3 style="color:var(--accent)">Mathematics for Machine Learning and Data Science</h3>
-                        <p>DeepLearning.AI, 07/2023</p>
-                        <p>Completed advanced coursework in Linear Algebra, Calculus, and Probability & Statistics for Machine Learning and Data Science, applying these mathematical foundations to build and optimize predictive models.</p>
-                    </div>
-                </div>
-            </a>
-            <a href="https://www.coursera.org/account/accomplishments/verify/99X7QEGSTZSY" class="grid-link" target="_blank">
-                <div class="hover-box"><img src="../Assets/Cert3.jpeg">
-                    <div class="overlay">
-                        <h3 style="color:var(--accent)">Data Analysis with Python</h3>
-                        <p>IBM, Coursera, 03/2023</p>
-                        <p>Handled real-world data using Pandas and SciPy for EDA, cleaning, and regression modeling.</p>
-                    </div>
-                </div>
-            </a>
-            <a href="https://www.datacamp.com/completed/statement-of-accomplishment/track/815d66014d37ff22ceffbdd5c8859e8ff6a759ed" class="grid-link" target="_blank">
-                <div class="hover-box"><img src="../Assets/Cert4.jpeg">
-                    <div class="overlay">
-                        <h3 style="color:var(--accent)">Python Programming Specialization</h3>
-                        <p>Datacamp, 06/2022</p>
-                        <p>Developed modular OOP and automated extraction tools using Scrapy, managing workflows with Git.</p>
-                    </div>
-                </div>
-            </a>
-        </div>
+    <section id="certs" style="background: var(--section-bg)">
+      <div class="section-title"><h2>Certifications</h2></div>
+      <div class="two-column-grid">
+        <a
+          href="https://www.coursera.org/account/accomplishments/specialization/3QY93SELWGJR"
+          class="grid-link"
+          target="_blank"
+        >
+          <div class="hover-box">
+            <img src="Assets/Cert1.jpeg" />
+            <div class="overlay">
+              <h3 style="color: var(--accent)">
+                Machine Learning Specialization
+              </h3>
+              <p>DeepLearning.AI, 02/2024</p>
+              <p>
+                Mastered ML (supervised/unsupervised/reinforcement) using
+                TensorFlow and scikit-learn for predictive models. Applied
+                linear algebra, calculus, and probability to understand
+                optimization and neural networks.
+              </p>
+            </div>
+          </div>
+        </a>
+        <a
+          href="https://www.coursera.org/account/accomplishments/specialization/JRYW52ESGCK3"
+          class="grid-link"
+          target="_blank"
+        >
+          <div class="hover-box">
+            <img src="Assets/Cert2.jpeg" />
+            <div class="overlay">
+              <h3 style="color: var(--accent)">
+                Mathematics for Machine Learning and Data Science
+              </h3>
+              <p>DeepLearning.AI, 07/2023</p>
+              <p>
+                Completed advanced coursework in Linear Algebra, Calculus, and
+                Probability & Statistics for Machine Learning and Data Science,
+                applying these mathematical foundations to build and optimize
+                predictive models.
+              </p>
+            </div>
+          </div>
+        </a>
+        <a
+          href="https://www.coursera.org/account/accomplishments/verify/99X7QEGSTZSY"
+          class="grid-link"
+          target="_blank"
+        >
+          <div class="hover-box">
+            <img src="Assets/Cert3.jpeg" />
+            <div class="overlay">
+              <h3 style="color: var(--accent)">Data Analysis with Python</h3>
+              <p>IBM, Coursera, 03/2023</p>
+              <p>
+                Handled real-world data using Pandas and SciPy for EDA,
+                cleaning, and regression modeling.
+              </p>
+            </div>
+          </div>
+        </a>
+        <a
+          href="https://www.datacamp.com/completed/statement-of-accomplishment/track/815d66014d37ff22ceffbdd5c8859e8ff6a759ed"
+          class="grid-link"
+          target="_blank"
+        >
+          <div class="hover-box">
+            <img src="Assets/Cert4.jpeg" />
+            <div class="overlay">
+              <h3 style="color: var(--accent)">
+                Python Programming Specialization
+              </h3>
+              <p>Datacamp, 06/2022</p>
+              <p>
+                Developed modular OOP and automated extraction tools using
+                Scrapy, managing workflows with Git.
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
     </section>
 
     <footer>
-        <div class="socials">
-            <a href="https://www.linkedin.com/in/muhammad-abdullah-baig-2aa543242/" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/M-Abdullah-Baig" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=abdullahbaig5890@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
-        </div>
-        <p style="margin-top:20px; color:#555; font-size:0.75rem">© 2026 Muhammad Abdullah Baig. All rights reserved.</p>
+      <div class="socials">
+        <a
+          href="https://www.linkedin.com/in/muhammad-abdullah-baig-2aa543242/"
+          target="_blank"
+          ><i class="fab fa-linkedin"></i
+        ></a>
+        <a href="https://github.com/M-Abdullah-Baig" target="_blank"
+          ><i class="fab fa-github"></i
+        ></a>
+        <a
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=abdullahbaig5890@gmail.com"
+          target="_blank"
+          ><i class="fas fa-envelope"></i
+        ></a>
+      </div>
+      <p style="margin-top: 20px; color: #555; font-size: 0.75rem">
+        © 2026 Muhammad Abdullah Baig. All rights reserved.
+      </p>
     </footer>
-
-</body>
+  </body>
 </html>
